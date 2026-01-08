@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Sakshi</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap');
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Poppins', sans-serif;
+background:
+url('https://pngimg.com/uploads/orange/orange_PNG799.png') top left no-repeat,
+url('https://pngimg.com/uploads/orange/orange_PNG799.png') bottom right no-repeat,
+linear-gradient(135deg,#ffecd2,#fcb69f);
+background-size:120px,120px,cover;
+overflow:hidden;
+}
+
+.card{
+background:rgba(255,255,255,0.25);
+backdrop-filter:blur(10px);
+padding:40px 35px;
+border-radius:30px;
+text-align:center;
+box-shadow:0 20px 40px rgba(0,0,0,0.25);
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0)}
+}
+
+h1{
+font-family:'Pacifico', cursive;
+font-size:46px;
+color:#ff6f61;
+margin-bottom:10px;
+}
+
+p{
+font-size:18px;
+color:#444;
+}
+
+button{
+margin-top:20px;
+padding:14px 35px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#ff9a9e,#ff6a88);
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{transform:scale(1.1)}
+
+#gift{display:none}
+
+#slide{
+width:280px;
+height:380px;
+border-radius:25px;
+box-shadow:0 15px 30px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+<body>
+
+<audio id="intro" src="music/intro.mp3" loop></audio>
+<audio id="music" src="music/song.mp3"></audio>
+
+<div class="card" id="main">
+<h1>Happy Birthday Sakshi 🎂</h1>
+<p>May your life be as sweet as oranges 🍊✨</p>
+<button id="giftBtn">🎁 Open Your Gift</button>
+</div>
+
+<div class="card" id="gift">
+<img id="slide" src="images/1.jpeg">
+</div>
+
+<script>
+let totalPhotos = 50;
+let index = 1;
+
+document.getElementById("giftBtn").addEventListener("click", function(){
+
+document.getElementById("intro").pause();
+document.getElementById("intro").currentTime = 0;
+
+document.getElementById("main").style.display = "none";
+document.getElementById("gift").style.display = "block";
+
+let song = document.getElementById("music");
+song.play();
+
+setInterval(function(){
+document.getElementById("slide").src = "images/" + index + ".jpeg";
+index++;
+if(index > totalPhotos) index = 1;
+}, 2000);
+
+});
+</script>
+
+<script>
+/* mobile autoplay fix */
+document.body.addEventListener("click", function(){
+let intro = document.getElementById("intro");
+if(intro.paused) intro.play();
+},{once:true});
+</script>
+
+</body>
+</html>
